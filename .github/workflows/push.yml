@@ -39,7 +39,7 @@ jobs:
       - name: Create ZIP from public/
         run: |
           cd public
-          zip -r ../site.zip .
+          zip -r ../dashboard.zip .
 
       - name: Prepare Pages folder
         run: |
