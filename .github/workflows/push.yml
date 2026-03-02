@@ -32,6 +32,7 @@ jobs:
 
       - name: Install package and build
         run: |
+          pnpm config set registry https://registry.npmjs.org/
           pnpm install --no-frozen-lockfile
           pnpm build
 
