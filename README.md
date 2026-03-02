@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/78135608/232244383-5e1389db-ce56-4c83-9627-4f3d1a489c6e.png" alt="yacd">
+  <img src="https://github.com/butukay/yacd-macos/blob/8543dd57b6b8bbf721daa27c6c9e17a1616dda1c/screenshot.png" alt="yacd">
 </h1>
 
 > Yet Another [Clash](https://github.com/yaling888/clash) [Dashboard](https://github.com/yaling888/clash-dashboard)
