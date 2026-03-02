@@ -34,6 +34,7 @@ function AboutImpl(props: Props) {
   const { data: version } = useQuery(['/version', props.apiConfig], () =>
     fetchVersion('/version', props.apiConfig)
   );
+
   return (
     <>
       <ContentHeader title="About" />
@@ -44,11 +45,19 @@ function AboutImpl(props: Props) {
           }
           version={version.version}
           link={
-            version.meta && version.premium ? 'https://github.com/SagerNet/sing-box' : version.meta ? 'https://github.com/MetaCubeX/Clash.Meta' : 'https://github.com/Dreamacro/clash'
+            version.meta && version.premium
+              ? 'https://github.com/SagerNet/sing-box'
+              : version.meta
+              ? 'https://github.com/MetaCubeX/Clash.Meta'
+              : 'https://github.com/Dreamacro/clash'
           }
         />
       ) : null}
-      <Version name="Yacd" version={__VERSION__} link="https://github.com/metacubex/yacd" />
+      <Version
+        name="Yacd (Mac OS theme)"
+        version={__VERSION__}
+        link="https://github.com/metacubex/yacd"
+      />
     </>
   );
 }

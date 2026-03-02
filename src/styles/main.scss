@@ -8,6 +8,12 @@
   src: url('../../assets/Twemoji_Mozilla.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'San Francisco';
+  font-weight: 400;
+  src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff');
+}
+
 .relative {
   position: relative;
 }
@@ -64,7 +70,9 @@
 :root {
   --font-mono: 'Roboto Mono', Menlo, monospace;
   // prettier-ignore
-  --font-normal: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",  "Source Han Sans", "PingFang SC", "Microsoft YaHei" , "微软雅黑", Arial,"Twemoji Mozilla", "_Twemoji Mozilla","Segoe UI Emoji", "Segoe UI Symbol";
+  --font-normal: -apple-system, BlinkMacSystemFont, sans-serif;
+
+  //-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",  "Source Han Sans", "PingFang SC", "Microsoft YaHei" , "微软雅黑", Arial,"Twemoji Mozilla", "_Twemoji Mozilla","Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 body {
@@ -97,20 +105,23 @@ body {
 }
 
 @mixin dark {
-  --color-background: #202020;
-  --color-background2: rgba(32, 32, 32, 0.3);
-  --color-bg-chart: #24292f;
-  --color-bg-card: #24292f;
-  --color-focus-blue: #306081;
+  --color-background: #272727;
+  --color-background2: rgba(39, 39, 39, 0.3);
+  --color-bg-chart: #1e1e1e;
+  --color-bg-card: #1e1e1e;
+  --color-focus-blue: #3b72c9;
   --btn-bg: #24292f;
   --color-proxy-border: #00000000;
   --card-hover-border-lightness: #306081;
   --color-text: #ddd;
   --color-text-secondary: #ccc;
   --color-text-highlight: #fff;
-  --color-bg-sidebar: #24292f;
-  --color-sb-active-row-bg: #30363d;
-  --color-sb-active-row-font: #eee;
+
+  --color-bg-sidebar: #2d2d2e;
+
+  --color-sb-active-row-bg: #3b72c9;
+  --color-sb-active-row-font: #fff;
+
   --color-input-bg: #2d2d30;
   --color-input-border: #3f3f3f;
   --color-toggle-bg: #353535;
@@ -121,6 +132,7 @@ body {
   --color-btn-fg: #bebebe;
   --color-bg-proxy: #202020;
   --color-row-odd: #282828;
+
   --bg-log-info-tag: #454545;
   --bg-modal: #1f1f20;
   --bg-near-transparent: rgba(255, 255, 255, 0.1);

@@ -1,9 +1,6 @@
-import { Tooltip } from '@reach/tooltip';
 import cx from 'clsx';
 import * as React from 'react';
-import { Info } from 'react-feather';
 import { useTranslation } from 'react-i18next';
-import { FcAreaChart, FcDocument, FcGlobe, FcLink, FcRuler, FcSettings } from 'react-icons/fc';
 import { useQuery } from 'react-query';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -11,74 +8,48 @@ import { fetchVersion } from '~/api/version';
 import { ThemeSwitcher } from '~/components/shared/ThemeSwitcher';
 import { connect } from '~/components/StateProvider';
 import { getClashAPIConfig } from '~/store/app';
+import { Symbol } from '~/symbols/Symbol';
 import { ClashAPIConfig } from '~/types';
 
 import s from './SideBar.module.scss';
 
 type Props = { apiConfig: ClashAPIConfig };
 
-const icons = {
-  activity: FcAreaChart,
-  globe: FcGlobe,
-  command: FcRuler,
-  file: FcDocument,
-  settings: FcSettings,
-  link: FcLink,
-};
-
-const SideBarRow = React.memo(function SideBarRow({
-  isActive,
-  to,
-  iconId,
-  labelText,
-}: SideBarRowProps) {
-  const Comp = icons[iconId];
-  const className = cx(s.row, isActive ? s.rowActive : null);
-  return (
-    <Link to={to} className={className}>
-      <Comp />
-      <div className={s.label}>{labelText}</div>
-    </Link>
-  );
-});
-
-interface SideBarRowProps {
-  isActive: boolean;
-  to: string;
-  iconId?: string;
-  labelText?: string;
-}
-
 const pages = [
   {
     to: '/',
-    iconId: 'activity',
+    iconId: 'text.and.command.macwindow',
     labelText: 'Overview',
   },
   {
     to: '/proxies',
-    iconId: 'globe',
-    labelText: 'Proxies',
+    iconId: 'rectangle.3.group.fill',
+    labelText: 'Groups',
   },
   {
     to: '/rules',
-    iconId: 'command',
+    iconId: 'text.insert',
     labelText: 'Rules',
   },
   {
     to: '/connections',
-    iconId: 'link',
-    labelText: 'Conns',
+    iconId: 'globe',
+    labelText: 'Connections',
   },
   {
     to: '/configs',
-    iconId: 'settings',
-    labelText: 'Config',
+    iconId: 'gear',
+    labelText: 'Settings',
   },
   {
     to: '/logs',
-    iconId: 'file',
+    iconId: 'text.document.fill',
     labelText: 'Logs',
+  },
+  {
+    to: '/about',
+    iconId: 'info.circle',
+    labelText: 'About',
   },
 ];
 
@@ -87,6 +58,30 @@ const mapState = (s) => ({
 });
 
 export default connect(mapState)(SideBar);
+
+interface SideBarRowProps {
+  isActive: boolean;
+  to: string;
+  iconId?: string;
+  labelText?: string;
+}
+
+const SideBarRow = React.memo(function SideBarRow({
+  isActive,
+  to,
+  iconId,
+  labelText,
+}: SideBarRowProps) {
+  const className = cx(s.row, isActive ? s.rowActive : null);
+  return (
+    <Link to={to} className={className}>
+      <div className={s.iconContainer}>
+        <Symbol name={iconId} weight="bold" fill="#d5d5d5" stroke="#d5d5d5" />
+      </div>
+      <div className={s.label}>{labelText}</div>
+    </Link>
+  );
+});
 
 function SideBar(props: Props) {
   const { t } = useTranslation();
@@ -111,11 +106,6 @@ function SideBar(props: Props) {
       </div>
       <div className={s.footer}>
         <ThemeSwitcher />
-        <Tooltip label={t('about')}>
-          <Link to="/about" className={s.iconWrapper}>
-            <Info size={20} />
-          </Link>
-        </Tooltip>
       </div>
     </div>
   );

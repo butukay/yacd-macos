@@ -1,10 +1,10 @@
 import cx from 'clsx';
 import * as React from 'react';
-import { ChevronDown, Zap } from 'react-feather';
 import { useQuery } from 'react-query';
 
 import * as proxiesAPI from '~/api/proxies';
 import { fetchVersion } from '~/api/version';
+import { LoadingDot } from '~/components/shared/Basic';
 import {
   getCollapsibleIsOpen,
   getHideUnavailableProxies,
@@ -12,8 +12,8 @@ import {
   getProxySortBy,
 } from '~/store/app';
 import { fetchProxies, getProxies, switchProxy } from '~/store/proxies';
+import { Symbol } from '~/symbols/Symbol';
 
-import Button from '../Button';
 import CollapsibleSectionHeader from '../CollapsibleSectionHeader';
 import { connect, useStoreActions } from '../StateProvider';
 import { useFilteredAndSorted } from './hooks';
@@ -21,14 +21,6 @@ import s0 from './ProxyGroup.module.scss';
 import { ProxyList, ProxyListSummaryView } from './ProxyList';
 
 const { createElement, useCallback, useMemo, useState, useEffect } = React;
-
-function ZapWrapper() {
-  return (
-    <div className={s0.zapWrapper}>
-      <Zap size={16} />
-    </div>
-  );
-}
 
 function ProxyGroupImpl({
   name,
@@ -71,6 +63,7 @@ function ProxyGroupImpl({
     },
     [apiConfig, dispatch, name, isSelectable]
   );
+
   const [isTestingLatency, setIsTestingLatency] = useState(false);
   const testLatency = useCallback(async () => {
     setIsTestingLatency(true);
@@ -110,45 +103,55 @@ function ProxyGroupImpl({
         <div style={{ display: 'flex' }}>
           {windowWidth > 768 ? (
             <>
-              <Button
-                kind="minimal"
+              <button
                 onClick={toggle}
-                className={s0.btn}
+                className={s0.groupButton}
                 title="Toggle collapsible section"
               >
-                <span className={cx(s0.arrow, { [s0.isOpen]: isOpen })}>
-                  <ChevronDown size={20} />
+                <span className={cx(s0.arrowContainer, { [s0.isOpen]: isOpen })}>
+                  <Symbol name="arrow.down.to.line" weight="bold" fill="#3478f6" stroke="#3478f6" />
                 </span>
-              </Button>
-              <Button
-                title="Test latency"
-                kind="minimal"
-                onClick={testLatency}
-                isLoading={isTestingLatency}
-              >
-                <ZapWrapper />
-              </Button>
+              </button>
+
+              {isTestingLatency ? (
+                <button title="Test latency" onClick={testLatency} className={s0.groupButton}>
+                  <div className={s0.zapContainer}>
+                    <LoadingDot />
+                  </div>
+                </button>
+              ) : (
+                <button title="Test latency" onClick={testLatency} className={s0.groupButton}>
+                  <div className={s0.zapContainer}>
+                    <Symbol name="bolt.fill" weight="bold" fill="#3478f6" stroke="#3478f6" />
+                  </div>
+                </button>
+              )}
             </>
           ) : (
             <>
-              <Button
-                title="Test latency"
-                kind="minimal"
-                onClick={testLatency}
-                isLoading={isTestingLatency}
-              >
-                <ZapWrapper />
-              </Button>
-              <Button
-                kind="minimal"
+              {isTestingLatency ? (
+                <button title="Test latency" onClick={testLatency} className={s0.groupButton}>
+                  <div className={s0.zapContainer}>
+                    <LoadingDot />
+                  </div>
+                </button>
+              ) : (
+                <button title="Test latency" onClick={testLatency} className={s0.groupButton}>
+                  <div className={s0.zapContainer}>
+                    <Symbol name="bolt.fill" weight="bold" fill="#3478f6" stroke="#3478f6" />
+                  </div>
+                </button>
+              )}
+
+              <button
                 onClick={toggle}
-                className={s0.btn}
+                className={s0.groupButton}
                 title="Toggle collapsible section"
               >
-                <span className={cx(s0.arrow, { [s0.isOpen]: isOpen })}>
-                  <ChevronDown size={20} />
+                <span className={cx(s0.arrowContainer, { [s0.isOpen]: isOpen })}>
+                  <Symbol name="arrow.down.to.line" weight="bold" fill="#3478f6" stroke="#3478f6" />
                 </span>
-              </Button>
+              </button>
             </>
           )}
         </div>

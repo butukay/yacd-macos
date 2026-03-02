@@ -3,24 +3,43 @@
 }
 
 .group {
-  padding: 10px;
-  background-color: var(--color-bg-card);
-  border-radius: 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  // padding: 10px;
+  // background-color: var(--color-bg-card);
+  // border-radius: 10px;
+  // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.zapWrapper {
+.groupButton {
+  background-color: var(--color-background);
+
+  border: 0;
+
+  // hover: {
+  //   background-color: #ffffff !important;
+  // }
+}
+
+.zapContainer {
   width: 20px;
   height: 20px;
   display: flex;
+
   align-items: center;
   justify-content: center;
+
+  svg {
+    width: 17px;
+    height: 17px;
+  }
 }
 
-.arrow {
+.arrowContainer {
   display: inline-flex;
   transform: rotate(0deg);
   transition: transform 0.3s;
+
+  justify-content: center;
+  align-items: center;
 
   &.isOpen {
     transform: rotate(180deg);
@@ -28,5 +47,10 @@
 
   &:focus {
     outline: var(--color-focus-blue) solid 1px;
+  }
+
+  svg {
+    width: 17px;
+    height: 17px;
   }
 }
