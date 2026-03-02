@@ -31,5 +31,3 @@ pnpm start
 # ready to deploy assets will be in the directory `public`
 pnpm build
 ```
-
-README.md
