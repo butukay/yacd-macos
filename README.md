@@ -12,7 +12,7 @@ Add to your sing-box config.json
   "experimental": {
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
-      "external_ui_download_url": "https://github.com/butukay/yacd-macos/dashboard.zip"
+      "external_ui_download_url": "https://butukay.github.io/yacd-macos/dashboard.zip"
     }
   }
 ```
@@ -25,11 +25,11 @@ Add to your sing-box config.json
 pnpm i
 
 # start the dev server
-# then go to http://127.0.0.1:3000
 pnpm start
-
 
 # build optimized assets
 # ready to deploy assets will be in the directory `public`
 pnpm build
 ```
+
+README.md
